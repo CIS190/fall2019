@@ -111,7 +111,7 @@ int main()
 }
 ```
 
-- We need to add a _declaration_ `bool odd(int)` to tell the compiler that this function exists, and has this type (return type + type and number of arguments).
+- We need to add a _declaration_ `bool odd(int);` to tell the compiler that this function exists, and has this type (return type + type and number of arguments).
 - Declarations can happen multiple times, but _definitions_ can only happen once.
 
 ## If
