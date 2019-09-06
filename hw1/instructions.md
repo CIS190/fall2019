@@ -1,6 +1,8 @@
 # Homework 1
 Grading: 70% correctness, 30% style (e.g. const, good use of abstractions, etc.)
 
+Due Sept 13 at 6PM
+
 If you want to output messages to the user (e.g. "enter 0 or 1", "try again", etc.) please do so using `cerr`. We will ignore output to `stderr` and only check the output of `stdout`.
 
 ## Description
