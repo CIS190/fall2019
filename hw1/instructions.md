@@ -25,7 +25,7 @@ The program should do the following:
   - Each printed complex number should be separated by a newline.
 - Before the program exits, the sum of all complex numbers successfully read should be printed, followed by a newline.
 
-Submit [`hw1.cpp`](hw1.cpp), which has been started for you. You should not add any other private members to the class, and the only public members you should add are the operators to overload.
+Submit [`hw1.cpp`](hw1.cpp), which has been started for you. You should not add any other private members to the class, and the only public members you should add are the operators to overload. The code should compile without errors or warnings with the options `g++ -Wall -std=c++17 -g`. You should not use pointers, only references.
 
 ## Sample input/output:
 
