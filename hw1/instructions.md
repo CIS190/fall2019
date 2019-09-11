@@ -13,7 +13,7 @@ Think about whether these overloaded functions can be member functions, and what
 
 The addition operators will add complex numbers only, not (`complex` + `int`) for instance.  Note that adding complex numbers is just adding their real and imaginary components pointwise.
 
-The `>>` and `<<` operators will expect input and output to be in the format `{r: 0i: 0}` where the `0`s are numbers that can be read into a double, and the spaces can be any whitespace (but there will always be _some_ whitespace). Whitespace between the first `double` and `i` is also acceptable (this is meant to keep the implementation simple), so `{r: 0 i : 0}` is also valid as input, but you should not print with this whitespace. If a stream tries to read a `complex` and the format is incorrect, it should be set to a failure state (as in [`overload.cpp`](../lecture2/overload.cpp)) (and you can set the state of the `complex` to anything, for simplicity).
+The `>>` and `<<` operators will expect input and output to be in the format `{r: 0i: 0}` where the `0`s are numbers that can be read into a double, and the spaces can be any whitespace (but there will always be _some_ whitespace). Whitespace between the first `double` and `i` is also acceptable (this is meant to keep the implementation simple), so `{r: 0 i: 0}` is also valid as input, but you should not print with this whitespace. If a stream tries to read a `complex` and the format is incorrect, it should be set to a failure state (as in [`overload.cpp`](../lecture2/overload.cpp)) (and you can set the state of the `complex` to anything, for simplicity).
 
 The program should do the following:
 - Prompt the user to enter 0 to read from stdin or 1 to read from a file.
