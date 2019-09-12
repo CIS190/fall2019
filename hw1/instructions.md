@@ -36,7 +36,7 @@ Submit [`hw1.cpp`](hw1.cpp), which has been started for you. You should not add 
 {r: 1.00i: 1.01}
 {r: 1e2 i: -0.2}
 {r: 0i: 0}
-{r: 0i:0}
+{r: 0i: 0]
 
 ```
 
@@ -64,7 +64,7 @@ complex.txt
 {r: 1.00i: 1.01}
 {r: 1e2 i: -0.2}
 {r: 0i: 0}
-{r: 0i:0}
+{r: 0i: 0]
 
 ```
 
