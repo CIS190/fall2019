@@ -307,3 +307,10 @@ int main()
 
 - It is possible to declare the default in either the declaration or the definition (not both). You should do this in the declaration (header), otherwise a caller can't know it exists.
 - The default argument(s) must appear at the end of the argument list.
+
+## "Bonus" unplanned material (_rough_ notes)
+- `enum` and `enum class`es
+- `enum` just declare some names for ints 0, 1, 2, 3, etc
+- `enum class` is strongly typed and scoped enumerators
+  - can actually define more operators, but won't go into this.
+  - prefer enum class to enum, in most cases

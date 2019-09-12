@@ -19,7 +19,7 @@ Don't worry about negative side lengths.
 
 For 10% bonus marks, write `void draw()` to draw ASCII art (sized appropriately) of the shape to `stdout`.
 There won't be specific guidelines for the ASCII drawing, as long as it works with different sizes (e.g. you can draw the triangle pointing up, left, right, whatever.).
-The triangle also doesn't have to _be_ equilateral (is that possible with ASCII art?), but it should look equilateral (i.e. /\, not |\).
+The triangle also doesn't have to _be_ equilateral (is that possible with ASCII art?), but it should look equilateral (i.e. /\\, not |\\).
 
 The area of an equilateral triangle is `(sqrt(3)/4) * l * l`, where `l` is the side length.
 
