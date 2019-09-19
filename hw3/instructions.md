@@ -21,3 +21,4 @@ Since you are implementing the destructor, implement the rest of the member func
 Submit `node.hpp` and `node.cpp`.
 We will test using our own `main.cpp`.
 Your files should compile without warnings or errors using `g++ -Wall -std=c++17 -g main.cpp node.cpp`.
+Your executable should never leak memory (test using `valgrind`!).
