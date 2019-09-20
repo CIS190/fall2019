@@ -7,6 +7,7 @@ Due Sept 26 at 9PM
 
 In this homework you will implement a binary search tree (BST) using raw pointers.
 Complete the implementation of the class `node`, representing a node in the tree.
+[`node.hpp`](node.hpp) and [`node.cpp`](node.cpp) have been started for you.
 
 A BST is a binary tree with the invariant that all the nodes in the left subtree have lower values than the current node, and all nodes in the right subtree have higher values than the current node.
 
