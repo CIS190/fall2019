@@ -3,7 +3,7 @@ Grading: 50% correctness, 50% style
 
 Since the behavior of this assignment is identical to the last one, correctness is worth less.
 
-Due Oct 3 at 9PM
+Due Oct 7 at 9PM
 
 ## Description
 In this homework you will redo the [last homework](../hw3/instructions.md) using more idiomatic C++ features. Instead of raw pointers, use `unique_ptr`. Use the copy (or move) and swap idiom for the (copy and move) assignment operator. Write a `swap` function for `node` and use it for the copy and swap idiom.
