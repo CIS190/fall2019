@@ -9,6 +9,8 @@ private:
     int val;
 public:
     literal(int);
+
+    void setVal(int);
     int getVal() const override;
 };
 
