@@ -61,7 +61,7 @@ int main()
 
 ### First: `pair`
 
-[`.cpp`](.cpp)
+[`pair.cpp`](pair.cpp)
 ```c++
 #include <iostream>
 #include <utility>
@@ -332,3 +332,4 @@ int main()
 - We can also write function templates.
 - The things we've talked about in the past 2 weeks are _not_ object-oriented.
   - If it were, there would be overhead in the form of virtual function calls when trying to perform operations abstractly.
+  - To abstract over them we can use templates instead, since they share a consistent common interface.
