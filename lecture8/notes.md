@@ -333,3 +333,40 @@ int main()
 - The things we've talked about in the past 2 weeks are _not_ object-oriented.
   - If it were, there would be overhead in the form of virtual function calls when trying to perform operations abstractly.
   - To abstract over them we can use templates instead, since they share a consistent common interface.
+
+### Requirements on templates
+
+- For most cases we want some restrictions on what templates can accept as type specializations.
+- E.g. for `wrapper` above we want `T` to be copy constructable, since we copy it when `get` is called.
+- [Requirements](https://en.cppreference.com/w/cpp/named_req) on types are very common, but there is currently no way to write them in C++.
+- _Concepts_ are a way of writing these requirements down and enforcing them, to come in C++20.
+  - Similar to traits in Rust or typeclasses in Haskell.
+
+## "Bonus" material: return codes
+
+- A common pattern in C is using return codes, like the following:
+
+```c++
+int * p = get_memory(...);
+if (p)
+    ...
+else
+    // error
+```
+
+- C++ provides 2 ways to deal with this in the standard library
+### `std::optional`
+- In <optional>
+- Holds either a value or nothing.
+- `{}` or `nullopt` is an empty optional<T>
+- Can use an implicit conversion to `bool` or `has_value` to check if an `optional` holds a value.
+- Use `value` to access the value, with an exception if no value exists.
+- Use `value_or` to access the value, with a default value passed in to return if no value exists.
+- Use `*` and `->` to access the value directly (without any check or exception), as if it was a pointer.
+
+### `std::variant`
+- C provides `union`s, a type that holds one of several types. In C this is typically used to access the same bytes using different types.
+  - The built-in `union` is _untagged_. It does not store which of the possible types it is.
+- C++ provides a _tagged_ union type, `variant`.
+- Use `holds_alternative` to check which one of its alternatives a `variant` holds.
+- Use `get<T>` to get one of its alternatives.
