@@ -141,8 +141,6 @@ int main()
   - `operator==` just checks if all the members are equal and in the same order.
   - `operator<` checks the lexicographic order.
   - `swap`, copy/move constructors/assignments are all defined.
-- Aside: `vector` has a constructor that takes the size of the vector to create. How can we initialize a `vector` to be a specific vector of size 1?
-  - `{1, 2, 3}` is of type `initializer_list`, so we can force this using vector<int> v {{1}};
 
 ## `array`
 
