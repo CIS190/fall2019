@@ -4,6 +4,19 @@
 
 [`ostream.cpp`](ostream.cpp)
 ```c++
+#include <iostream>
+#include <iterator>
+
+using namespace std;
+
+int main()
+{
+    ostream_iterator<string> oi {cout};
+
+    *oi = "Hello ";
+    oi++; // no-op
+    *oi = "world"; // The * is also a no-op
+}
 ```
 
 - Iterators are elements of _sequences_, not containers.
@@ -13,6 +26,29 @@
 
 [`istream.cpp`](istream.cpp)
 ```c++
+#include <iostream>
+#include <iterator>
+#include <vector>
+
+using namespace std;
+
+int main()
+{
+    istream_iterator<string> ii {cin};
+    istream_iterator<string> eos; // end of stream iterator
+
+    cout << *ii << "\n";
+    ii++;
+    cout << *ii << "\n";
+    cout << *ii << "\n";
+
+    ii++;
+    vector<string> v;
+    v.insert(v.begin(), ii, eos);
+
+    for (auto & s : v)
+        cout << s << " ";
+}
 ```
 
 - Each time an `istream_iterator` is incremented, it will read from its stream.
@@ -27,6 +63,19 @@
 
 [`.cpp`](.cpp)
 ```c++
+#include <iostream>
+#include <utility>
+
+using namespace std;
+
+int main()
+{
+    pair<int, string> p1 {1, "hello"};
+    // auto p2 {1, "hello"}; // doesn't work, could be list, vector, etc.
+    auto p2 {make_pair(1, "hello")};
+
+    cout << p1.first << " " << p2.second;
+}
 ```
 
 - Combines two objects of any type.
@@ -40,6 +89,24 @@
 
 [`map1.cpp`](map1.cpp)
 ```c++
+#include <iostream>
+#include <map>
+
+using namespace std;
+
+int main()
+{
+    map<int, string> numbers;
+    numbers[0] = "zero";
+    numbers[1] = "one";
+
+    map<int, string> numbers2 {{2, "two"}, {3, "three"}};
+
+    cout << numbers[0] << " " << numbers[1] << " " << numbers2[2] << "\n";
+    cout << numbers[2]; // creates the element if it doesn't exist
+
+    cout << numbers.size();
+}
 ```
 
 - Typically implemented using a balanced BST like a red-black tree.
@@ -52,6 +119,47 @@
 
 [`map2.cpp`](map2.cpp)
 ```c++
+#include <iostream>
+#include <map>
+
+using namespace std;
+
+class test
+{
+public:
+    int i;
+
+    test(int i) : i {i} {}
+
+    bool operator<(const test & o) const
+    {
+        return i < o.i;
+    }
+
+    bool operator>(const test & o) const
+    {
+        return !(*this < o);
+    }
+};
+
+int main()
+{
+    map<test, string> m;
+
+    test t1 {1};
+    test t2 {2};
+    test t3 {3};
+
+    m[t1] = "one";
+    m[t2] = "two";
+    m[t3] = "three";
+    m[4] = "four"; // implicit conversion also works
+
+    for (auto & p : m)
+    {
+        cout << p.first.i << " " << p.second << "\n";
+    }
+}
 ```
 
 - If your key is a custom class, you'll need to specify an ordering to use.
@@ -66,6 +174,24 @@
 
 [`unordered_map.cpp`](unordered_map.cpp)
 ```c++
+#include <iostream>
+#include <unordered_map>
+
+using namespace std;
+
+int main()
+{
+    unordered_map<int, string> numbers;
+    numbers[0] = "zero";
+    numbers[1] = "one";
+
+    unordered_map<int, string> numbers2 {{2, "two"}, {3, "three"}};
+
+    cout << numbers[0] << " " << numbers[1] << " " << numbers2[2] << "\n";
+    cout << numbers[2]; // creates the element if it doesn't exist
+
+    cout << numbers.size();
+}
 ```
 
 - `map` uses a BST, with logarithmic complexity for its operations.
@@ -90,20 +216,119 @@
 ### `multi` variants
 
 - There are also the `multimap`, `unordered_multimap`, `multiset`, and `unordered_multiset` classes for associative containers that can have multiple copies of a key.
-- These containers can return a sequence of results using a start and end iterator.
+- These containers can return a sequence of results (a start and end iterator).
 
 ## Templates
 
-[`.cpp`](.cpp)
+### Class templates
+
+[`class_template.cpp`](class_template.cpp)
 ```c++
+#include <iostream>
+
+template <typename T>
+class wrapper
+{
+    T t;
+public:
+    wrapper(T t) : t {t} {}
+
+    T get() const
+    {
+        return t;
+    }
+
+    void set(T t)
+    {
+        this.t = t;
+    }
+};
+
+using namespace std;
+
+int main()
+{
+    wrapper w {12};
+
+    cout << w.get();
+}
 ```
 
 - Templates are used for _parametric polymorphism_, for writing code that does not depend on the type of a value.
+- We can write classes that are parametric on an input type.
+- The container classes and smart pointers that we've seen are all examples of these.
 
-
-[`.cpp`](.cpp)
+[`templates/wrapper.hpp`](templates/wrapper.hpp)
 ```c++
+#ifndef WRAPPER_HPP
+#define WRAPPER_HPP
+
+template <typename T>
+class wrapper
+{
+    T t;
+public:
+    wrapper(T t);
+
+    T get() const;
+    void set(T t);
+};
+
+#include "wrapper.tpp"
+
+#endif
 ```
 
+[`templates/wrapper.tpp`](templates/wrapper.tpp)
+```c++
+template <typename T>
+wrapper<T>::wrapper(T t) : t {t}
+{}
+
+template <typename T>
+T wrapper<T>::get() const
+{
+    return t;
+}
+
+template <typename T>
+void wrapper<T>::set(T t)
+{
+    this.t = t;
+}
+```
+
+- The compiler generates different code each time the template class is _instantiated_, so the implementation and interface must be bundled together in the same file for this to occur (due to separate compilation).
+  - Sometimes people still break up the interface and implementation for organization or design reasons, but `#include` the implementation file (usually using a different file extension) in the interface file so it still compiles.
+- `typename` and `class` are interchangeable in the template prefix. I prefer `typename`, since not all types are classes in C++. You may find `class` in older code.
+
+### Function templates
+
+[`function_template.cpp`](function_template.cpp)
+```c++
+#include <iostream>
+
+using namespace std;
+
+template <typename T>
+void my_swap (T & a, T & b)
+{
+    T c {a};
+    a = b;
+    b = c;
+}
+
+int main()
+{
+    int i {1};
+    int j {2};
+
+    my_swap(i, j);
+
+    cout << i << " " << j;
+}
+```
+
+- We can also write function templates.
 - The things we've talked about in the past 2 weeks are _not_ object-oriented.
   - If it were, there would be overhead in the form of virtual function calls when trying to perform operations abstractly.
