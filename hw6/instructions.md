@@ -1,7 +1,7 @@
 # Homework 6
 Grading: 70% correctness, 30% style
 
-Due Oct 31 at 6PM
+Due Oct 31 at 9PM
 
 ## Description
 
