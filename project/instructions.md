@@ -29,6 +29,8 @@ In particular, describe any libraries or frameworks you plan to use.
 Talk about what features of C++ you expect to use, and how you plan to structure your project (Does it have a class hierarchy? Is it a series of class templates?).
 Provide an estimate for the time you expect to spend on different parts of the project, and how you expect the work will be split within your group.
 
+Each group should have one member submit the proposal on canvas (in plain text).
+
 Grading will be based solely on completeness of these requirements.
 I will provide feedback about your proposal as soon as possible.
 
