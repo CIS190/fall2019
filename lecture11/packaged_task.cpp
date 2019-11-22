@@ -16,7 +16,7 @@ int main()
 
     thread t {move(pt), 12};
 
-    t.join();
-
     cout << result.get();
+
+    t.join();
 }

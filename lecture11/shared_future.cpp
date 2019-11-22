@@ -22,13 +22,13 @@ int main()
 
     thread t {producer, 12, ref(p)};
 
-    t.join();
-
     shared_future<int> shared = result.share();
 
     thread t1 {consumer, ref(shared)};
     thread t2 {consumer, ref(shared)};
     thread t3 {consumer, ref(shared)};
+
+    t.join();
 
     t1.join();
     t2.join();

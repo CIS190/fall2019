@@ -17,7 +17,7 @@ int main()
 
     thread t {producer, 12, ref(p)};
 
-    t.join();
-
     cout << result.get();
+
+    t.join();
 }
