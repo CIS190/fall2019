@@ -179,6 +179,7 @@ int main()
 - Neither of C nor C++ are a strict subset of the other. They are really more siblings than ancestors.
 
 ![family tree](family.png)
+Picture from "A Tour of C++, 2nd Edition" by Bjarne Stroustrup.
 
 - e.g. variable names from C may be keywords in C++.
 - e.g. in C `void *` can be implicitly converted to any pointer type. In C++ it cannot.
